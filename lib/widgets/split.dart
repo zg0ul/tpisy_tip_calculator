@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:tipsy_tip_calculator/utils/colors.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tipsy_tip_calculator/utils/enums.dart';
+import 'package:tipsy_tip_calculator/utils/styles/colors.dart';
+import 'package:tipsy_tip_calculator/utils/providers.dart';
 
-class SplitWidget extends StatelessWidget {
+class SplitWidget extends ConsumerWidget {
   const SplitWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final splitCount = ref.watch(splitCounterProvider);
     return SizedBox(
       width: 250,
       child: Column(
@@ -23,7 +27,12 @@ class SplitWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (splitCount >= 3) {
+                    ref.read(splitCounterProvider.notifier).state =
+                        splitCount - 1;
+                  }
+                },
                 child: const Text(
                   '-',
                   style: TextStyle(
@@ -36,9 +45,9 @@ class SplitWidget extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 10),
-              const Text(
-                '3',
-                style: TextStyle(
+              Text(
+                splitCount.toString(),
+                style: const TextStyle(
                   fontFamily: "Karmilla",
                   fontWeight: FontWeight.w700,
                   color: textColor,
@@ -48,7 +57,16 @@ class SplitWidget extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (splitCount < 30) {
+                    ref.read(splitCounterProvider.notifier).state =
+                        splitCount + 1;
+                    print(ref
+                        .read(tipProvider.notifier)
+                        .state
+                        .customPercentage);
+                  }
+                },
                 child: const Text(
                   '+',
                   style: TextStyle(

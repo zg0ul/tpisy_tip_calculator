@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:tipsy_tip_calculator/utils/colors.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tipsy_tip_calculator/utils/enums.dart';
+import 'package:tipsy_tip_calculator/utils/providers.dart';
+import 'package:tipsy_tip_calculator/utils/styles/colors.dart';
 
-class OutputWidget extends StatelessWidget {
+class OutputWidget extends ConsumerWidget {
   const OutputWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final totalBill = ref.watch(totalBillProvider);
+    final tipPercentage = ref.watch(tipProvider).percentage;
+    final splitCount = ref.watch(splitCounterProvider);
+
+    final tipPerPerson = (totalBill * tipPercentage) / splitCount;
+    final billPerPerson = totalBill / splitCount;
+    final totalAmountPerPerson =
+        (totalBill + totalBill * tipPercentage) / splitCount;
+
     return Container(
       height: 250,
       decoration: const BoxDecoration(
@@ -26,9 +38,9 @@ class OutputWidget extends StatelessWidget {
                     letterSpacing: 0.5,
                   ),
                 ),
-                const Text(
-                  '\$ 45.05',
-                  style: TextStyle(
+                Text(
+                  '\$ ${totalAmountPerPerson.toStringAsFixed(2)}',
+                  style: const TextStyle(
                     color: textColor,
                     fontFamily: 'Karmilla',
                     fontWeight: FontWeight.w700,
@@ -52,9 +64,9 @@ class OutputWidget extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    const Text(
-                      '\$ 37.54',
-                      style: TextStyle(
+                    Text(
+                      '\$ ${billPerPerson.toStringAsFixed(2)}',
+                      style: const TextStyle(
                         color: textColor,
                         fontFamily: 'Karmilla',
                         fontWeight: FontWeight.w700,
@@ -74,9 +86,9 @@ class OutputWidget extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    const Text(
-                      '\$ 7.51',
-                      style: TextStyle(
+                    Text(
+                      '\$ ${tipPerPerson.toStringAsFixed(2)}',
+                      style: const TextStyle(
                         color: textColor,
                         fontFamily: 'Karmilla',
                         fontWeight: FontWeight.w700,

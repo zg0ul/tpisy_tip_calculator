@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:tipsy_tip_calculator/utils/colors.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tipsy_tip_calculator/utils/providers.dart';
+import 'package:tipsy_tip_calculator/utils/styles/colors.dart';
 
-class EnterBillWidget extends StatelessWidget {
+class EnterBillWidget extends ConsumerWidget {
   const EnterBillWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       // margin: const EdgeInsets.only(top: 30, left: 60, right: 60),
       width: 250,
@@ -21,7 +23,7 @@ class EnterBillWidget extends StatelessWidget {
               letterSpacing: 0.5,
             ),
           ),
-          const Align(
+          Align(
             alignment: Alignment.center,
             child: SizedBox(
               width: 150,
@@ -29,7 +31,7 @@ class EnterBillWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.attach_money_rounded,
                     size: 25,
                     color: textColor,
@@ -37,14 +39,20 @@ class EnterBillWidget extends StatelessWidget {
                   Expanded(
                     child: TextField(
                       keyboardType: TextInputType.number,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: textColor,
                         fontFamily: 'Karmilla',
                         fontWeight: FontWeight.w700,
                         fontSize: 25,
                         letterSpacing: 0.5,
                       ),
-                      decoration: InputDecoration(
+                      onChanged: (value) {
+                        print(value);
+
+                        ref.read(totalBillProvider.notifier).state =
+                            double.tryParse(value) ?? 0.0;
+                      },
+                      decoration: const InputDecoration(
                         // icon: Icon(
                         //   Icons.attach_money_rounded,
                         //   size: 25,

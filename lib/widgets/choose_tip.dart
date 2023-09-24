@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tipsy_tip_calculator/utils/enums.dart';
 import 'package:tipsy_tip_calculator/utils/helpers/tip_button.dart';
+import 'package:tipsy_tip_calculator/utils/providers.dart';
 
-class ChoosePillWidget extends StatelessWidget {
+class ChoosePillWidget extends ConsumerWidget {
   const ChoosePillWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentTip = ref.watch(tipProvider);
+    final String? customTip = ref.watch(customTipButtonContents.notifier).state;
+
     return SizedBox(
       width: 250,
       // height: 100,
@@ -21,20 +27,25 @@ class ChoosePillWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TipButton(text: "10%"),
-              TipButton(text: "15%"),
-              TipButton(text: "20%"),
+              TipButton(text: "10", label: Tip.ten, currentTip: currentTip),
+              TipButton(text: "15", label: Tip.fifteen, currentTip: currentTip),
+              TipButton(text: "20", label: Tip.twenty, currentTip: currentTip),
             ],
           ),
           const SizedBox(height: 10),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TipButton(text: "25%"),
-              TipButton(text: "Custom tip", isPill: true),
+              TipButton(
+                  text: "25", label: Tip.twentyFive, currentTip: currentTip),
+              TipButton(
+                  text: customTip ?? "Custom tip",
+                  isPill: true,
+                  label: Tip.custom,
+                  currentTip: currentTip),
             ],
           ),
         ],

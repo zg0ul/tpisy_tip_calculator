@@ -9,3 +9,4 @@ const titleColor = Color.fromARGB(255, 0, 66, 32);
 // const textColor = Color.fromARGB(255, 90, 164, 127);
 const textColor = Color.fromARGB(255, 14, 138, 83);
 const shadowColor = Color.fromARGB(255, 182, 228, 208);
+const activeButtonColor = Color.fromARGB(255, 22, 164, 101);
