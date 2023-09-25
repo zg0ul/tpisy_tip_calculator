@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tipsy_tip_calculator/utils/styles/colors.dart';
+import 'colors.dart';
 
 const TextStyle inactiveTextStyle = TextStyle(
   fontFamily: "Karmilla",
@@ -37,12 +37,17 @@ BoxDecoration activeBoxStyle = BoxDecoration(
 const InputDecoration customTipActiveDecoration = InputDecoration(
   border: OutlineInputBorder(
     gapPadding: 100,
+    borderSide: BorderSide(color: titleColor, width: 1.0),
+    borderRadius: BorderRadius.all(Radius.circular(55)),
+  ),
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: titleColor, width: 1.0),
     borderRadius: BorderRadius.all(Radius.circular(55)),
   ),
   fillColor: activeButtonColor,
   suffixText: '%',
   suffixStyle: activeTextStyle,
-  
+
   // hintText: 'Custom tip',
   // hintStyle: activeTextStyle,
 );

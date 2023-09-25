@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tipsy_tip_calculator/utils/enums.dart';
-import 'package:tipsy_tip_calculator/utils/styles/colors.dart';
-import 'package:tipsy_tip_calculator/utils/providers.dart';
+import '../utils/styles/colors.dart';
+import '../utils/providers.dart';
 
 class SplitWidget extends ConsumerWidget {
   const SplitWidget({super.key});
@@ -61,10 +60,6 @@ class SplitWidget extends ConsumerWidget {
                   if (splitCount < 30) {
                     ref.read(splitCounterProvider.notifier).state =
                         splitCount + 1;
-                    print(ref
-                        .read(tipProvider.notifier)
-                        .state
-                        .customPercentage);
                   }
                 },
                 child: const Text(

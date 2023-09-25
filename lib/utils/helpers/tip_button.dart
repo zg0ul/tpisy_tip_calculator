@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tipsy_tip_calculator/utils/controllers.dart';
-import 'package:tipsy_tip_calculator/utils/enums.dart';
-import 'package:tipsy_tip_calculator/utils/providers.dart';
-import 'package:tipsy_tip_calculator/utils/styles/styles.dart';
+import '../controllers.dart';
+import '../enums.dart';
+import '../providers.dart';
+import '../styles/styles.dart';
 
 class TipButton extends ConsumerWidget {
   final String text;
@@ -27,6 +27,9 @@ class TipButton extends ConsumerWidget {
     return GestureDetector(
       onTap: () {
         ref.read(tipProvider.notifier).state = label;
+        if (!isActive && label != Tip.custom) {
+          ref.read(customTipButtonIsActiveProvider.notifier).state = false;
+        }
       },
       child: Container(
         width: buttonWidth,
@@ -42,14 +45,19 @@ class TipButton extends ConsumerWidget {
                   textAlign: TextAlign.center,
                   textAlignVertical: TextAlignVertical.top,
                   onChanged: (value) {
-                    ref.read(customTipButtonContents.notifier).state = value;
-                    final numvalue = double.tryParse(value);
-                    print(numvalue);
-                    ref
-                        .read(tipProvider.notifier)
-                        .state
-                        .customPercentage = numvalue ?? 0.0;
+                    ref.read(customTipButtonContentsProvider.notifier).state =
+                        value;
+                    final numValue = double.tryParse(value);
+                    ref.read(tipProvider.notifier).state.customPercentage =
+                        numValue ?? 0.0;
+                    ref.read(customTipPercentageProvider.notifier).state =
+                        numValue ?? 0.0;
+                    ref.read(customTipButtonIsActiveProvider.notifier).state =
+                        true;
                   },
+                  onTap: () => ref
+                      .read(customTipButtonIsActiveProvider.notifier)
+                      .state = true,
                 )
               : Text(
                   '$text%',

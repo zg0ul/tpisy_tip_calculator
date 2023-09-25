@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tipsy_tip_calculator/utils/enums.dart';
-import 'package:tipsy_tip_calculator/utils/providers.dart';
-import 'package:tipsy_tip_calculator/utils/styles/colors.dart';
+import '../utils/enums.dart';
+import '../utils/providers.dart';
+import '../utils/styles/colors.dart';
 
 class OutputWidget extends ConsumerWidget {
   const OutputWidget({super.key});
@@ -10,19 +10,28 @@ class OutputWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final totalBill = ref.watch(totalBillProvider);
+
+    final customTipPercentage = ref.watch(customTipPercentageProvider) / 100;
+    final customTipButtonIsActive = ref.watch(customTipButtonIsActiveProvider);
     final tipPercentage = ref.watch(tipProvider).percentage;
+    final finalTipPercentage =
+        customTipButtonIsActive ? customTipPercentage : tipPercentage;
+
     final splitCount = ref.watch(splitCounterProvider);
 
-    final tipPerPerson = (totalBill * tipPercentage) / splitCount;
+    final tipPerPerson = (totalBill * finalTipPercentage) / splitCount;
     final billPerPerson = totalBill / splitCount;
     final totalAmountPerPerson =
-        (totalBill + totalBill * tipPercentage) / splitCount;
+        (totalBill + totalBill * finalTipPercentage) / splitCount;
 
     return Container(
-      height: 250,
+      height: 280,
       decoration: const BoxDecoration(
         color: accentColor,
-        borderRadius: BorderRadius.all(Radius.circular(15)),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
       ),
       child: Center(
         child: Column(

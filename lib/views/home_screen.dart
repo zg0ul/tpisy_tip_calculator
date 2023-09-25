@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tipsy_tip_calculator/utils/styles/colors.dart';
-import 'package:tipsy_tip_calculator/widgets/choose_tip.dart';
-import 'package:tipsy_tip_calculator/widgets/enter_bill.dart';
-import 'package:tipsy_tip_calculator/widgets/output.dart';
-import 'package:tipsy_tip_calculator/widgets/split.dart';
+import '../utils/styles/colors.dart';
+import '../widgets/choose_tip.dart';
+import '../widgets/enter_bill.dart';
+import '../widgets/output.dart';
+import '../widgets/split.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tipsy_tip_calculator/utils/providers.dart';
-import 'package:tipsy_tip_calculator/utils/styles/colors.dart';
+import '../utils/providers.dart';
+import '../utils/styles/colors.dart';
 
 class EnterBillWidget extends ConsumerWidget {
   const EnterBillWidget({super.key});

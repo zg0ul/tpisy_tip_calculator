@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tipsy_tip_calculator/utils/enums.dart';
-import 'package:tipsy_tip_calculator/utils/helpers/tip_button.dart';
-import 'package:tipsy_tip_calculator/utils/providers.dart';
+import '../utils/enums.dart';
+import '../utils/helpers/tip_button.dart';
+import '../utils/providers.dart';
 
 class ChoosePillWidget extends ConsumerWidget {
   const ChoosePillWidget({super.key});
@@ -10,7 +10,8 @@ class ChoosePillWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentTip = ref.watch(tipProvider);
-    final String? customTip = ref.watch(customTipButtonContents.notifier).state;
+    final String? customTip =
+        ref.watch(customTipButtonContentsProvider.notifier).state;
 
     return SizedBox(
       width: 250,
