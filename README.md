@@ -1,16 +1,13 @@
-# tipsy_tip_calculator
+# tipsy - A tip calculator
 
-A new Flutter project.
+Tipsy is a simple Tip calculator app, you can change the tip percentage to one of the pre-set ones, or set a custom tip using the custom tip button, which allows easy modification and access to that custom value.
 
-## Getting Started
+For state management, `Riverpod` is used.
 
-This project is a starting point for a Flutter application.
+All the outputs at the bottom change in real time as new bill, tip, and or split values are given.
 
-A few resources to get you started if this is your first Flutter project:
+App preview:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+https://github.com/zg0ul/tpisy_tip_calculator/assets/79023856/f6a970b1-ff11-49b7-942f-0ec1cc4ff7bb
+
