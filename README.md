@@ -6,6 +6,8 @@ For state management, `Riverpod` is used.
 
 All the outputs at the bottom change in real time as new bill, tip, and or split values are given.
 
+Note: UI design made by [Casey Wu](https://dribbble.com/shots/6398522-Daily-UI-004-Calculator)
+
 App preview:
 
 
