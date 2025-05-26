@@ -25,15 +25,18 @@ class OutputWidget extends ConsumerWidget {
         (totalBill + totalBill * finalTipPercentage) / splitCount;
 
     return Container(
-      height: 280,
+      height: 320,
+      width: double.infinity,
       decoration: const BoxDecoration(
         color: accentColor,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+          topLeft: Radius.circular(25),
+          topRight: Radius.circular(25),
         ),
       ),
-      child: Center(
+      child: Padding(
+        padding:
+            const EdgeInsets.only(top: 20, bottom: 40, left: 20, right: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -43,23 +46,24 @@ class OutputWidget extends ConsumerWidget {
                   'Total per person',
                   style: TextStyle(
                     color: Colors.grey[600],
-                    fontSize: 22,
+                    fontSize: 24,
                     letterSpacing: 0.5,
                   ),
                 ),
+                const SizedBox(height: 10),
                 Text(
                   '\$ ${totalAmountPerPerson.toStringAsFixed(2)}',
                   style: const TextStyle(
                     color: textColor,
                     fontFamily: 'Karmilla',
                     fontWeight: FontWeight.w700,
-                    fontSize: 46,
+                    fontSize: 52,
                     letterSpacing: 0.5,
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -69,17 +73,18 @@ class OutputWidget extends ConsumerWidget {
                       'bill',
                       style: TextStyle(
                         color: Colors.grey[600],
-                        fontSize: 18,
+                        fontSize: 20,
                         letterSpacing: 0.5,
                       ),
                     ),
+                    const SizedBox(height: 8),
                     Text(
                       '\$ ${billPerPerson.toStringAsFixed(2)}',
                       style: const TextStyle(
                         color: textColor,
                         fontFamily: 'Karmilla',
                         fontWeight: FontWeight.w700,
-                        fontSize: 24,
+                        fontSize: 28,
                         letterSpacing: 0.5,
                       ),
                     ),
@@ -91,17 +96,18 @@ class OutputWidget extends ConsumerWidget {
                       'tip',
                       style: TextStyle(
                         color: Colors.grey[600],
-                        fontSize: 18,
+                        fontSize: 20,
                         letterSpacing: 0.5,
                       ),
                     ),
+                    const SizedBox(height: 8),
                     Text(
                       '\$ ${tipPerPerson.toStringAsFixed(2)}',
                       style: const TextStyle(
                         color: textColor,
                         fontFamily: 'Karmilla',
                         fontWeight: FontWeight.w700,
-                        fontSize: 24,
+                        fontSize: 28,
                         letterSpacing: 0.5,
                       ),
                     ),
@@ -109,7 +115,6 @@ class OutputWidget extends ConsumerWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
           ],
         ),
       ),

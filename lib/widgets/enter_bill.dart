@@ -9,9 +9,7 @@ class EnterBillWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
-      // margin: const EdgeInsets.only(top: 30, left: 60, right: 60),
-      width: 250,
-      // height: 100,
+      width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -19,49 +17,55 @@ class EnterBillWidget extends ConsumerWidget {
             "Enter bill total",
             style: TextStyle(
               color: Colors.grey[600],
-              fontSize: 16,
+              fontSize: 20,
               letterSpacing: 0.5,
             ),
           ),
+          const SizedBox(height: 15),
           Align(
             alignment: Alignment.center,
             child: SizedBox(
-              width: 150,
+              width: 200,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Icon(
                     Icons.attach_money_rounded,
-                    size: 25,
+                    size: 35,
                     color: textColor,
                   ),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: TextField(
                       keyboardType: TextInputType.number,
+                      textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: textColor,
                         fontFamily: 'Karmilla',
                         fontWeight: FontWeight.w700,
-                        fontSize: 25,
+                        fontSize: 32,
                         letterSpacing: 0.5,
                       ),
                       onChanged: (value) {
                         print(value);
-
                         ref.read(totalBillProvider.notifier).state =
                             double.tryParse(value) ?? 0.0;
                       },
                       decoration: const InputDecoration(
-                        // icon: Icon(
-                        //   Icons.attach_money_rounded,
-                        //   size: 25,
-                        //   color: textColor,
-                        // ),
                         hintText: "59.46",
-                        border: UnderlineInputBorder(),
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 32,
+                        ),
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(width: 2),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: textColor, width: 2),
+                        ),
+                        contentPadding: EdgeInsets.symmetric(vertical: 10),
                       ),
-                      expands: false,
                     ),
                   ),
                 ],

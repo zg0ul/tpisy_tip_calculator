@@ -14,8 +14,7 @@ class ChoosePillWidget extends ConsumerWidget {
         ref.watch(customTipButtonContentsProvider.notifier).state;
 
     return SizedBox(
-      width: 250,
-      // height: 100,
+      width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -23,22 +22,22 @@ class ChoosePillWidget extends ConsumerWidget {
             "Choose tip",
             style: TextStyle(
               color: Colors.grey[600],
-              fontSize: 16,
+              fontSize: 20,
               letterSpacing: 0.5,
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               TipButton(text: "10", label: Tip.ten, currentTip: currentTip),
               TipButton(text: "15", label: Tip.fifteen, currentTip: currentTip),
               TipButton(text: "20", label: Tip.twenty, currentTip: currentTip),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 15),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               TipButton(
                   text: "25", label: Tip.twentyFive, currentTip: currentTip),

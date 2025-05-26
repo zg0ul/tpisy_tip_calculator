@@ -18,83 +18,72 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: backgroundColor,
-        // To prevent overflow when keyboard is open use SingleChildScrollView
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Column(
-                children: [
-                  ClipPath(
-                    clipper: WaveClipper(),
-                    child: Container(
-                      height: 150,
-                      decoration: const BoxDecoration(
-                        color: accentColor,
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Tipsy',
-                          style: GoogleFonts.pacifico(
-                            textStyle: const TextStyle(
-                              color: titleColor,
-                              fontSize: 30,
-                            ),
-                          ),
-                        ),
-                      ),
+      backgroundColor: backgroundColor,
+      body: Column(
+        children: [
+          // Header with wave
+          ClipPath(
+            clipper: WaveClipper(),
+            child: Container(
+              height: 165,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: accentColor,
+              ),
+              child: Center(
+                child: Text(
+                  'Tipsy',
+                  style: GoogleFonts.pacifico(
+                    textStyle: const TextStyle(
+                      color: titleColor,
+                      fontSize: 32,
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-                    child: EnterBillWidget(),
-                  ),
-                  const SizedBox(height: 20),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-                    child: ChoosePillWidget(),
-                  ),
-                  const SizedBox(height: 20),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-                    child: SplitWidget(),
-                  ),
-                  const SizedBox(height: 12),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                    child: OutputWidget(),
-                  ),
-                  // SizedBox(height: MediaQuery.of(context).padding.bottom * 10),
-                ],
-              )
-            ],
+                ),
+              ),
+            ),
           ),
-        ));
+          // const SizedBox(height: 25),
+
+          // Enter bill section
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: EnterBillWidget(),
+          ),
+          const SizedBox(height: 10),
+
+          // Choose tip section
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: ChoosePillWidget(),
+          ),
+          const SizedBox(height: 10),
+
+          // Split section
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: SplitWidget(),
+          ),
+          const SizedBox(height: 25),
+
+          // Output section - part of normal flow
+          const Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 0),
+              child: OutputWidget(),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
 class WaveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    debugPrint(size.width.toString());
     var path = Path();
     path.lineTo(0, size.height * 0.8);
-    // // first point of the quadratic bezier curve
-    // var firstStart = Offset(size.width / 5, size.height);
-    // // second point of the quadratic bezier curve
-    // var firstEnd = Offset(size.width / 2.25, size.height - 50.0);
-    // path.quadraticBezierTo(
-    //     firstStart.dx, firstStart.dy, firstEnd.dx, firstEnd.dy);
-
-    // // third point of the quadratic bezier curve
-    // var secondStart =
-    //     Offset(size.width - (size.width / 3.24), size.height - 105);
-    // // fourth point of the quadratic bezier curve
-    // var secondEnd = Offset(size.width, size.height - 10);
-    // path.quadraticBezierTo(
-    //     secondStart.dx, secondStart.dy, secondEnd.dx, secondEnd.dy);
 
     path.quadraticBezierTo(
       size.width * 0.25,
